@@ -1,2 +1,2 @@
 # NFe-XML-Parser
-Nota Fiscal Eletrônica XML Parser
+Bulk Nota Fiscal Eletrônica XML parser to csv file.
