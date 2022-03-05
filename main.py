@@ -13,18 +13,18 @@ def parseXML(file):
     
     # Busca as tags   
     try:
-        valorProdutos = bs_data.find_all('vProd')
-        notaFiscal = bs_data.find('nNF')
-        dataEmissao = bs_data.find('dhEmi')
-        obsPedido = bs_data.find('infCpl')
-        natOperacao = bs_data.find('natOp')
+        valor_produtos = bs_data.find_all('vProd')
+        nota_fiscal = bs_data.find('nNF')
+        data_emissao = bs_data.find('dhEmi')
+        obs_pedido = bs_data.find('infCpl')
+        nat_operacao = bs_data.find('natOp')
 
     except Exception as e:
             print(e)
             return
 
     try:
-        obs = obsPedido.get_text()
+        obs = obs_pedido.get_text()
         pedido = re.findall(r"(?<=PEDIDO ORIGEM:).*", obs)
 
         if not pedido:
@@ -36,13 +36,13 @@ def parseXML(file):
     if not pedido:
       pedido = "0"  
 
-    valor = valorProdutos[-1].get_text()
+    valor = valor_produtos[-1].get_text()
 
-    natOp = natOperacao.get_text()
+    natOp = nat_operacao.get_text()
     if not natOp:
       natOp = "0"
 
-    return [notaFiscal.get_text(), dataEmissao.get_text(), valor, *pedido, natOp]
+    return [nota_fiscal.get_text(), data_emissao.get_text(), valor, *pedido, natOp]
 
 def main():
     # define diretorio
